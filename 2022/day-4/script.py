@@ -1,3 +1,5 @@
+#script1.py werkt, deze niet!
+
 inputFile = open("inputText.txt").readlines()
 lines = []
 
