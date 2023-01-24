@@ -1,14 +1,9 @@
+import math
+
 inputFile = open("input.txt").readlines()
 for i in range(len(inputFile)):
 	inputFile[i] = inputFile[i].strip() 
-"""
-noop: 1 cycle, 0 erbij
-addx 3: 2 cycles, 3 erbij
-addx -5: 2 cycles, 5 eraf
-Dus:
-[0,0,3,0,-5]
-Instructies omzetten in List?
-"""
+
 commands = []
 
 for com in inputFile:
@@ -19,10 +14,22 @@ for com in inputFile:
 		commands.append(0)
 		commands.append(com)
 
-totalCount = 1
+tC = 1
 answerCount = 0
+
+l = int(len(commands) / 40)
+rows = ["" for _ in range(l)]
+print(rows)
+#sprite = [0,1,2]
 for i in range(len(commands)):
-	if (i + 21) % 40 == 0:
-		answerCount += (i + 1) * totalCount
-	totalCount += commands[i]
-print(answerCount)
+	k = math.floor(i / 40)
+	print(k)
+	alt_i = i - k * 40
+	if tC <= alt_i + 1 and tC >= alt_i - 1:
+		rows[k] += "#"
+	else:
+		rows[k] += "."
+	tC += commands[i]
+for i in range(6):
+	print(rows[i])
+	
